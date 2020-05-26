@@ -37,7 +37,10 @@ public class Validation extends ListenerAdapter {
 
 		Main.getJDA().addEventListener(this);
 		for (String unicode : this.unicodes) {
-			this.message.addReaction(unicode).queue();
+			try {
+				this.message.addReaction(unicode).queue();
+			} catch (Exception e) {
+			}
 		}
 	}
 
@@ -82,6 +85,11 @@ public class Validation extends ListenerAdapter {
 	
 	public String getIntactClickedEmote() {
 		return this.clickedEmote.getEmoji();
+	}
+	
+	public void unregister() {
+		this.message.delete().complete();
+		Main.getJDA().getEventManager().unregister(this);
 	}
 
 }

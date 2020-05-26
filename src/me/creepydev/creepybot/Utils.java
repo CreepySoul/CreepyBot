@@ -1,13 +1,19 @@
 package me.creepydev.creepybot;
 
 import java.awt.Color;
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.temporal.TemporalAccessor;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed.Field;
 
 public class Utils {
+
+	public static SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy '('K:mm a')'", Locale.US);
 
 	public static EmbedBuilder buildEmbed(String title, Color color, String description, String author, String footer, String image, String thumbnail,
 			TemporalAccessor timestamp, Field... fields) {
@@ -94,6 +100,21 @@ public class Utils {
 		} else {
 			return "0";
 		}
+	}
+
+	public static File createRandomFolder() {
+		Random random = new Random();
+		int rand = random.nextInt(1000);
+		File file = null;
+
+		while (new File(Main.getFolder(), "temp/" + String.valueOf(rand)).exists()) {
+			rand = random.nextInt(1000);
+		}
+
+		file = new File(Main.getFolder(), "temp/" + String.valueOf(rand));
+		file.mkdirs();
+
+		return file;
 	}
 
 }

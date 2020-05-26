@@ -9,6 +9,7 @@ import org.kohsuke.github.GitHubBuilder;
 
 import me.creepydev.creepybot.commands.Admin;
 import me.creepydev.creepybot.listeners.MemberJoinEvent;
+import me.creepydev.creepybot.listeners.MessageEvent;
 import me.creepydev.creepybot.listeners.ReactionAddEvent;
 import me.creepydev.creepybot.notifications.NotificationsManager;
 import me.creepydev.creepybot.projet.ProjetManager;
@@ -18,7 +19,6 @@ import me.creepydev.creepybot.services.Stats;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 
 public class Main {
@@ -49,6 +49,7 @@ public class Main {
 		// Listeners
 		jda.addEventListener(new ReactionAddEvent());
 		jda.addEventListener(new MemberJoinEvent());
+		jda.addEventListener(new MessageEvent());
 
 		// Commands
 		jda.addEventListener(new Admin());

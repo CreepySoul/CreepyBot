@@ -22,6 +22,10 @@ public class ProjetManager {
 	}
 
 	public Projet getProjetWithCategory(Long categoryID) {
+		if (this.projets.stream().filter(projet -> projet.getCategory().getId().equals(categoryID.toString())).collect(Collectors.toList()).isEmpty()) {
+			return null;
+		}
+		
 		return this.projets.stream().filter(projet -> projet.getCategory().getId().equals(categoryID.toString())).collect(Collectors.toList()).get(0);
 	}
 	
